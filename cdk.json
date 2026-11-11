@@ -7,12 +7,9 @@
     "exclude": [
       "README.md",
       "cdk*.json",
-      "requirements*.txt",
       "**/__init__.py",
       "**/__pycache__",
-      "tests",
-      "pyproject.toml",
-      ".python-version"
+      "tests"
     ]
   },
   "context": {

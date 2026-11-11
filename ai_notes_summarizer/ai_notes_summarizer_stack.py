@@ -1,7 +1,9 @@
+import os
 from dataclasses import dataclass
 from aws_cdk import (
     CfnOutput,
     Duration,
+    DockerVolume,
     RemovalPolicy,
     Stack,
     aws_iam,
@@ -19,6 +21,10 @@ class Config:
     output_prefix: str
     bedrock_model_id: str
 
+
+# create local cache directory
+pip_cache_dir = os.path.abspath(".cache/pip")
+os.makedirs(pip_cache_dir, exist_ok=True)
 
 class AiNotesSummarizerStack(Stack):
 
@@ -49,18 +55,29 @@ class AiNotesSummarizerStack(Stack):
         summarizer_fn = aws_lambda.Function(
             self,
             "NotesSummarizerFunction",
-            runtime=aws_lambda.Runtime.PYTHON_3_11,
+            runtime=aws_lambda.Runtime.PYTHON_3_14,
             handler="handler.lambda_handler",
             code=aws_lambda.Code.from_asset(
                 "lambda_src",
                 bundling={
-                    "image": aws_lambda.Runtime.PYTHON_3_10.bundling_image,  # Docker container
+                    "image": aws_lambda.Runtime.PYTHON_3_14.bundling_image,  # Docker container
+                    "environment": {
+                        "HOME": "/tmp",
+                        "PIP_CACHE_DIR": "/tmp/pip-cache",
+                    },
+                    "volumes": [
+                        DockerVolume(
+                            host_path=pip_cache_dir,
+                            container_path="/tmp/pip-cache",
+                        )
+                    ],
                     "command": [
                         "bash",
                         "-c",
-                        # install requirements and copy lambda code
+                        # install requirements (with caching) and copy lambda code
                         (
-                            "pip install -r requirements.txt -t /asset-output &&"
+                            "mkdir -p /tmp/pip-cache &&"
+                            "pip install --cache-dir /tmp/pip-cache -r requirements.txt -t /asset-output &&"
                             "cp -au . /asset-output"
                         ),
                     ],
