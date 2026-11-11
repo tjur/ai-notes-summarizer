@@ -1,0 +1,15 @@
+Product Team Meeting — January 10
+
+The team discussed the current status of the PDF export feature for customer reports.
+The backend implementation is almost complete, but the frontend still needs approximately two more days of work.
+
+Anna mentioned that the current export implementation may not handle very large reports efficiently.
+Peter suggested introducing a temporary report size limit for the first MVP release.
+The team agreed that the MVP should be released next Friday if QA testing does not reveal any critical issues.
+
+Tasks:
+Anna will investigate realistic report size limits by Wednesday.
+Peter will prepare user-facing communication about the temporary limitations.
+Mark will finish integration tests by Thursday.
+
+Open question: should PDF export be available for all subscription plans, or only for premium customers?
