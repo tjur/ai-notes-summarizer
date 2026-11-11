@@ -11,8 +11,8 @@ logger.setLevel(logging.INFO)
 s3 = boto3.client("s3")
 
 BUCKET_NAME = os.environ["BUCKET_NAME"]
-INPUT_PREFIX = os.environ.get["INPUT_PREFIX"]
-OUTPUT_PREFIX = os.environ.get["OUTPUT_PREFIX"]
+INPUT_PREFIX = os.environ["INPUT_PREFIX"]
+OUTPUT_PREFIX = os.environ["OUTPUT_PREFIX"]
 
 
 def lambda_handler(event: dict, context):
