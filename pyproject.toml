@@ -1,0 +1,21 @@
+[project]
+name = "ai-notes-summarizer"
+version = "0.1.0"
+description = "AI notes summarizer"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "aws-cdk-lib>=2.275.0",
+    "constructs>=10.8.1",
+    "python-dotenv>=1.2.4",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+    # AWS lambda requirements, not CDK stack logic; installed here for method hints and tests
+    "boto3>=1.43.127",
+    "langchain>=1.4.9",
+    "langchain-core>=1.7.7",
+    "langchain-aws>=1.9.2",
+]
