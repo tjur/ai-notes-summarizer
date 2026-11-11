@@ -1,9 +1,10 @@
 import os
 from dataclasses import dataclass
+
 from aws_cdk import (
     CfnOutput,
-    Duration,
     DockerVolume,
+    Duration,
     RemovalPolicy,
     Stack,
     aws_iam,
@@ -26,16 +27,15 @@ class Config:
 pip_cache_dir = os.path.abspath(".cache/pip")
 os.makedirs(pip_cache_dir, exist_ok=True)
 
+
 class AiNotesSummarizerStack(Stack):
-
     def __init__(
-            self,
-            scope: Construct,
-            construct_id: str,
-            config: Config,
-            **kwargs,
-
-        ) -> None:
+        self,
+        scope: Construct,
+        construct_id: str,
+        config: Config,
+        **kwargs,
+    ) -> None:
         super().__init__(scope, construct_id, **kwargs)
         stack = Stack.of(self)
 
@@ -91,8 +91,10 @@ class AiNotesSummarizerStack(Stack):
                 "BEDROCK_MODEL_ID": config.bedrock_model_id,
                 "AWS_REGION_NAME": stack.region,
             },
-            log_group=aws_logs.LogGroup(stack, "LogGroup", retention=aws_logs.RetentionDays.ONE_WEEK),
-            description="Function summarizing uploaded S3 notes using Amazon Bedrock and uploading the result to S3 output path."
+            log_group=aws_logs.LogGroup(
+                stack, "LogGroup", retention=aws_logs.RetentionDays.ONE_WEEK
+            ),
+            description="Function summarizing uploaded S3 notes using Amazon Bedrock and uploading the result to S3 output path.",
         )
 
         # grant read and write access for lambda

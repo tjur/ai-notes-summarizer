@@ -1,11 +1,9 @@
-import os
 import logging
+import os
 import urllib.parse
 
 import boto3
-
 from summarizer import summarize_text
-
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)

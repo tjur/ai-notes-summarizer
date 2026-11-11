@@ -49,6 +49,7 @@ Before running this project, install the following software:
 - Python 3.14 or greater
 - uv
 - AWS CDK
+- pre-commit (for development)
 
 You also need:
 
@@ -186,18 +187,13 @@ List S3 objects:
 aws s3 ls s3://<YOUR_BUCKET_NAME> --recursive
 ```
 
-View Lambda logs:
-
-```bash
-aws logs describe-log-groups
-```
 
 ## Future improvements
 
 Possible extensions:
 
-- Add support for PDF files.
-- Add document chunking for long notes.
-- Store metadata in DynamoDB.
-- Send summaries by email using Amazon SES.
-- Build a RAG workflow over historical notes.
+- Add support for PDF files
+- Add document chunking for long notes
+- Store metadata in DynamoDB
+- Send summaries by email using Amazon SES
+- Build a RAG workflow over historical notes

@@ -3,12 +3,11 @@ import os
 from langchain_aws import ChatBedrock
 from langchain_core.prompts import ChatPromptTemplate
 
-
 BEDROCK_MODEL_ID = os.environ["BEDROCK_MODEL_ID"]
 AWS_REGION_NAME = os.environ["AWS_REGION_NAME"]
 
 
- llm = ChatBedrock(
+llm = ChatBedrock(
     model_id=BEDROCK_MODEL_ID,
     region_name=AWS_REGION_NAME,
     model_kwargs={
