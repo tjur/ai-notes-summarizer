@@ -87,6 +87,7 @@ class AiNotesSummarizerStack(Stack):
             memory_size=1024,
             environment={
                 "BUCKET_NAME": bucket.bucket_name,
+                "INPUT_PREFIX": config.input_prefix,
                 "OUTPUT_PREFIX": config.output_prefix,
                 "BEDROCK_MODEL_ID": config.bedrock_model_id,
                 "AWS_REGION_NAME": stack.region,
