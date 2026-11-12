@@ -20,7 +20,7 @@ AiNotesSummarizerStack(
         input_prefix=os.environ.get("INPUT_PREFIX", "input/"),
         output_prefix=os.environ.get("OUTPUT_PREFIX", "summarized/"),
         bedrock_model_id=os.environ.get(
-            "BEDROCK_MODEL_ID", "anthropic.claude-3-haiku-20240307-v1:0"
+            "BEDROCK_MODEL_ID", "anthropic.claude-haiku-5-5"
         ),
     ),
 )
